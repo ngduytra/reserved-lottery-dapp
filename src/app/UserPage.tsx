@@ -22,7 +22,7 @@ import { useMemo, useState } from "react";
 import { useWalletClient } from "wagmi";
 
 const UserPage = () => {
-  const { tokenName, decimals, tokenAddress } = useTokenPaymentInfo();
+  const { tokenName, decimals } = useTokenPaymentInfo();
   const result = useWalletClient();
   console.log("result:wallet client: ", result);
   const currentRound = useGetCurrentRoundId();
@@ -57,14 +57,11 @@ const UserPage = () => {
       const neededAmount = parseUnits(ticketPrice, decimals as number);
       // Also set general submitting state
       await approveErc20Transfer(contractAddress, neededAmount);
-
-      console.log("approved:done");
-
-      setIsApproving(false);
-      setIsSubmitting(false);
     } catch (e) {
-      console.log("error:", e);
       alert(e);
+    } finally {
+      setIsSubmitting(false);
+      setIsApproving(false);
     }
   };
 

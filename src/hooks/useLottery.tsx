@@ -159,7 +159,7 @@ export const useTokenPaymentInfo = () => {
 
 export const useApproveErc20 = () => {
   const tokenAddress = useGetTokenAddress();
-  const { writeContractAsync } = useWriteContract();
+  const { data: hash, writeContractAsync } = useWriteContract({});
 
   const approveErc20 = async (spender: string, amount: BigNumberish) => {
     console.log("approveErc20", tokenAddress, spender, amount);

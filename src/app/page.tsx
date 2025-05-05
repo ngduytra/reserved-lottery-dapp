@@ -1,5 +1,4 @@
 "use client";
-
 import AppHeader from "@/components/AppHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Stuff";
 import UserPage from "./UserPage";
