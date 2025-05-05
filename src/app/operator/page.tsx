@@ -29,11 +29,7 @@ const contractInfo = {
   tax: BigInt(10000),
 };
 
-const OperatorPage = ({
-  onSimulateAction,
-}: {
-  onSimulateAction: (actionName: string, details: any) => void;
-}) => {
+const OperatorPage = () => {
   const { isConnected } = useAccount();
   const [roundName, setRoundName] = useState<string>("");
   const [roundStart, setRoundStart] = useState<string>("");
@@ -56,11 +52,11 @@ const OperatorPage = ({
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Create Round", {
-      name: roundName,
-      start: roundStart,
-      end: roundEnd,
-    });
+    // onSimulateAction("Create Round", {
+    //   name: roundName,
+    //   start: roundStart,
+    //   end: roundEnd,
+    // });
     setTimeout(() => {
       setIsSubmitting(false);
       setRoundName("");
@@ -75,10 +71,10 @@ const OperatorPage = ({
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Add Lucky Number", {
-      roundId: luckyNumberRoundId,
-      number: luckyNumber,
-    });
+    // onSimulateAction("Add Lucky Number", {
+    //   roundId: luckyNumberRoundId,
+    //   number: luckyNumber,
+    // });
     setTimeout(() => {
       setIsSubmitting(false);
       setLuckyNumberRoundId("");
@@ -92,7 +88,7 @@ const OperatorPage = ({
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Set Tax", { taxMan: taxManAddress, tax: taxAmount });
+    // onSimulateAction("Set Tax", { taxMan: taxManAddress, tax: taxAmount });
     setTimeout(() => setIsSubmitting(false), 1500); // Keep values
   };
 
@@ -102,7 +98,7 @@ const OperatorPage = ({
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Set Token Address", { address: newTokenAddress });
+    // onSimulateAction("Set Token Address", { address: newTokenAddress });
     setTimeout(() => {
       setIsSubmitting(false);
       setNewTokenAddress("");

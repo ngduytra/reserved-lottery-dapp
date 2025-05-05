@@ -80,12 +80,12 @@ const UserPage = () => {
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Create Ticket", {
-      price: ticketPrice,
-      betRate: ticketBetRate,
-      roundId: ticketRoundId,
-      predictedNumber: ticketPredictedNumber,
-    });
+    // onSimulateAction("Create Ticket", {
+    //   price: ticketPrice,
+    //   betRate: ticketBetRate,
+    //   roundId: ticketRoundId,
+    //   predictedNumber: ticketPredictedNumber,
+    // });
     setTimeout(() => {
       setIsSubmitting(false);
       setTicketPrice("");
@@ -100,10 +100,10 @@ const UserPage = () => {
       return;
     }
     setIsSubmitting(true);
-    onSimulateAction("Claim Reward", {
-      ticketId: claimTicketId,
-      roundId: claimRoundId,
-    });
+    // onSimulateAction("Claim Reward", {
+    //   ticketId: claimTicketId,
+    //   roundId: claimRoundId,
+    // });
     setTimeout(() => {
       setIsSubmitting(false);
       setClaimTicketId("");
@@ -140,7 +140,7 @@ const UserPage = () => {
             <span className="font-mono text-muted-foreground">
               {tokenName as string}
             </span>{" "}
-            ({decimals as string} decimals)
+            ({decimals} decimals)
           </p>
         </CardContent>
       </Card>

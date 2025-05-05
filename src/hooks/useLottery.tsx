@@ -41,7 +41,7 @@ export function useCreateTicket() {
       //   });
 
       //   await refreshData();
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error creating ticket:", error);
       //   toast({
       //     title: "Failed to purchase ticket",
@@ -159,7 +159,7 @@ export const useTokenPaymentInfo = () => {
 
 export const useApproveErc20 = () => {
   const tokenAddress = useGetTokenAddress();
-  const { data: hash, writeContractAsync } = useWriteContract({});
+  const { writeContractAsync } = useWriteContract({});
 
   const approveErc20 = async (spender: string, amount: BigNumberish) => {
     console.log("approveErc20", tokenAddress, spender, amount);
