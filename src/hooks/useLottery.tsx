@@ -185,3 +185,48 @@ export const useGetAllowance = () => {
   });
   return allowance as bigint;
 };
+
+export const useCreateNewRound = () => {
+  const { writeContractAsync } = useWriteContract({});
+
+  const createNewRound = async (name: string, start: bigint, end: bigint) => {
+    await writeContractAsync({
+      address: contractAddress as `0x${string}`,
+      abi: contractABI,
+      functionName: "createRound",
+      args: [name, start, end],
+    });
+  };
+
+  return createNewRound;
+};
+
+export const useAddLuckyNumber = () => {
+  const { writeContractAsync } = useWriteContract({});
+
+  const addLuckyNumber = async (roundId: number, number: bigint) => {
+    await writeContractAsync({
+      address: contractAddress as `0x${string}`,
+      abi: contractABI,
+      functionName: "addLuckyNumber",
+      args: [roundId, number],
+    });
+  };
+
+  return addLuckyNumber;
+};
+
+export const useSetTax = () => {
+  const { writeContractAsync } = useWriteContract({});
+
+  const setTax = async (tax: number) => {
+    await writeContractAsync({
+      address: contractAddress as `0x${string}`,
+      abi: contractABI,
+      functionName: "setTax",
+      args: [tax],
+    });
+  };
+
+  return setTax;
+};

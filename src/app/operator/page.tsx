@@ -15,6 +15,11 @@ import {
 import AppHeader from "@/components/AppHeader";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import {
+  useAddLuckyNumber,
+  useCreateNewRound,
+  useSetTax,
+} from "@/hooks/useLottery";
 
 const dummyContractAddress = "0x1234567890abcdef1234567890abcdef12345678";
 const dummyUserAddress = "0xabcdef1234567890abcdef1234567890abcdef12";
@@ -42,6 +47,9 @@ const OperatorPage = () => {
   const [taxAmount, setTaxAmount] = useState<string>(
     contractInfo.tax?.toString() || "0"
   );
+  const createNewRound = useCreateNewRound();
+  const addLuckyNumber = useAddLuckyNumber();
+  const setTax = useSetTax();
 
   const [newTokenAddress, setNewTokenAddress] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Shared submitting state for operator actions
@@ -52,17 +60,20 @@ const OperatorPage = () => {
       return;
     }
     setIsSubmitting(true);
-    // onSimulateAction("Create Round", {
-    //   name: roundName,
-    //   start: roundStart,
-    //   end: roundEnd,
-    // });
-    setTimeout(() => {
+    try {
+      createNewRound(
+        roundName,
+        BigInt(new Date(roundStart).getSeconds()),
+        BigInt(new Date(roundEnd).getSeconds())
+      );
+    } catch (e) {
+      alert(e);
+    } finally {
       setIsSubmitting(false);
       setRoundName("");
       setRoundStart("");
       setRoundEnd("");
-    }, 1500);
+    }
   };
 
   const handleAddLuckyNumber = () => {
@@ -71,15 +82,15 @@ const OperatorPage = () => {
       return;
     }
     setIsSubmitting(true);
-    // onSimulateAction("Add Lucky Number", {
-    //   roundId: luckyNumberRoundId,
-    //   number: luckyNumber,
-    // });
-    setTimeout(() => {
+    try {
+      addLuckyNumber(Number(luckyNumberRoundId), BigInt(luckyNumber));
+    } catch (e) {
+      alert(e);
+    } finally {
       setIsSubmitting(false);
       setLuckyNumberRoundId("");
       setLuckyNumber("");
-    }, 1500);
+    }
   };
 
   const handleSetTax = () => {
